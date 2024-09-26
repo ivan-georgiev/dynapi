@@ -1,0 +1,26 @@
+{
+  "endpoints": [
+    {
+      "path": "/"
+    },
+    {
+      "path": "/health",
+      "response_code": 200,
+      "delay": 1
+    },
+    {
+      "path": "/slow",
+      "delay": 10
+    },
+    {
+      "path": "/veryslow",
+      "delay": 120
+    },    
+    {
+      "path": "/fail",
+      "delay": 3,
+      "http_500_probability": 0.8
+    } 
+  ]
+}
+
