@@ -1,4 +1,5 @@
 {
+  "startup_delay_in_seconds": 40,
   "endpoints": [
     {
       "path": "/"

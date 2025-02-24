@@ -7,14 +7,15 @@ license: MIT
 import json
 import os
 import random
+from time import sleep
 from typing import Optional
 
 from fastapi import FastAPI, Query, Response
 from pydantic import BaseModel
 import asyncio
 import uvicorn
+from contextlib import asynccontextmanager
 
-app = FastAPI()
 
 # Get environment variables
 VERSION = os.getenv("DYNAPP_VERSION", "0.1.0")
@@ -25,6 +26,18 @@ HOSTNAME = os.getenv("HOSTNAME", "")
 # Load config.json for endpoint definitions
 with open(file=CONFIG_FILE, mode='r', encoding="utf8") as config_file:
     config_data = json.load(config_file)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Startup function
+    """
+    # startup delay
+    sleep(int(config_data.get("startup_delay_in_seconds", 0)))
+    yield
+    # post-steps here
+
+app = FastAPI(lifespan=lifespan)
 
 def should_return_500(probability: float) -> bool:
     """

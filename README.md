@@ -61,6 +61,7 @@ The application uses a config.json file to define the endpoints, their response 
 
 ```json
 {
+  "startup_delay_in_seconds": 40,
   "endpoints": [
     {
       "path": "/"

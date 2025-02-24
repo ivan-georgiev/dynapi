@@ -23,6 +23,6 @@ docker build \
 
 [[ "$@" == *"run"* ]]  && echo "INFO: Run" && docker run --rm -p 8080:8080 \
     -e DYNAPP_VERSION="$VERSION" \
-    -e DYNAPP_NOSIGNALS="true" \
+    -e DYNAPP_NOSIGNALS="false" \
     --name dynapi \
     $IMAGE_NAME:$VERSION
